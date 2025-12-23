@@ -20,10 +20,9 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            /* Chống bôi đen và chống các hành động chạm giữ (touch-action) */
             -webkit-user-select: none;
             user-select: none;
-            touch-action: pan-x pan-y; /* Chỉ cho phép cuộn, không cho phép pinch-zoom (zoom bằng 2 ngón tay) */
+            touch-action: pan-x pan-y;
         }
 
         body {
@@ -39,7 +38,6 @@
             align-items: center;
             min-height: 100vh;
             padding: 40px 20px;
-            /* Ngăn chặn phóng to bằng thao tác cuộn trên một số trình duyệt */
             overscroll-behavior: none;
         }
 
@@ -59,7 +57,7 @@
             margin-bottom: 20px;
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
             object-fit: cover;
-            pointer-events: none; /* Chống tương tác chuột/tay vào ảnh */
+            pointer-events: none;
         }
 
         h1 {
@@ -67,6 +65,14 @@
             font-weight: 800;
             margin-bottom: 5px;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Phần CSS Bio mới thêm */
+        .bio {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-bottom: 20px;
+            line-height: 1.4;
         }
 
         .info-box {
@@ -137,6 +143,8 @@
         <img src="https://raw.githubusercontent.com/Minkuanng/Image/refs/heads/main/images%20(1).jpeg" alt="Minh Quang Avatar" class="profile-img">
         
         <h1>Nguyễn Ngọc Minh Quang</h1>
+        
+        <p class="bio">Hi, world</p>
 
         <div class="info-box">
             <div class="info-item"><i class="fas fa-user"></i><span>QuangZHubX</span></div>
@@ -157,7 +165,6 @@
     </div>
 
     <script>
-        // 1. Chặn phím tắt Zoom (Ctrl + Plus, Ctrl + Minus, Ctrl + Wheel)
         document.addEventListener('keydown', function (e) {
             if (e.ctrlKey && (e.keyCode === 61 || e.keyCode === 107 || e.keyCode === 173 || e.keyCode === 109 || e.keyCode === 187 || e.keyCode === 189)) {
                 e.preventDefault();
@@ -170,14 +177,12 @@
             }
         }, { passive: false });
 
-        // 2. Chặn Zoom bằng 2 ngón tay trên Touchpad/Màn hình cảm ứng
         document.addEventListener('touchstart', function (e) {
             if (e.touches.length > 1) {
                 e.preventDefault();
             }
         }, { passive: false });
 
-        // 3. Chặn các phím F12, Ctrl+U để bảo mật thêm
         document.onkeydown = function(e) {
             if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || (e.ctrlKey && e.keyCode == 85)) {
                 return false;
